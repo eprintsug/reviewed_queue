@@ -37,8 +37,6 @@ sub new
 	];
 	$self->{action_icon} = { move_archive => "action_approve.png",
 				 move_reviewed => "reviewed.png" };
-	
-	$self->{disable} = 1;
 
 	return $self;
 }
