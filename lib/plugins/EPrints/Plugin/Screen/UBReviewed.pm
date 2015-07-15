@@ -26,6 +26,8 @@ sub new
 		}
 	];
 
+	$self->{disable} = 1;
+	
 	return $self;
 }
 
