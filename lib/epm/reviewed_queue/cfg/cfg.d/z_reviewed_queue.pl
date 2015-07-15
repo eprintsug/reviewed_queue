@@ -4,7 +4,10 @@ $c->{plugin_alias_map}->{"Screen::EPrint::Move"} = "Screen::EPrint::UBMove";
 $c->{plugin_alias_map}->{"Screen::EPrint::UBMove"} = undef;
 
 $c->{plugin_alias_map}->{"Screen::Items"} = "Screen::UBItems";
-$c->{plugin_alias_map}->{"Screen::EPrint::UBItems"} = undef;
+$c->{plugin_alias_map}->{"Screen::UBItems"} = undef;
+
+$c->{plugin_alias_map}->{"Screen::Status"} = "Screen::UBStatus";
+$c->{plugin_alias_map}->{"Screen::UBStatus"} = undef;
 
 push @{$c->{user_roles}->{admin}}, "review-eprint";
 
