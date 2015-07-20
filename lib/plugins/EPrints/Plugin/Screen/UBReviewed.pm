@@ -35,7 +35,7 @@ sub can_be_viewed
 {
 	my( $self ) = @_;
 
-	return $self->allow( "editorial_review", "review-eprint" );
+	return $self->allow( "editorial_review" );
 }
 
 sub properties_from
