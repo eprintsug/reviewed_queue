@@ -29,14 +29,17 @@ sub new
 { place => "eprint_actions_bar_buffer", action => "move_archive", position => 100, },
 { place => "eprint_actions_bar_buffer", action => "move_reviewed", position => 100, },
 { place => "eprint_actions_bar_reviewed", action => "move_archive", position => 100, },
+{ place => "eprint_actions_bar_reviewed", action => "move_buffer", position => 100, },
 { place => "eprint_actions_bar_archive", action => "move_buffer", position => 100, },
 { place => "eprint_actions_bar_archive", action => "move_deletion", position => 100, },
 { place => "eprint_actions_bar_deletion", action => "move_archive", position => 100, },
 { place => "eprint_review_actions", action => "move_archive", position => 200, },
 { place => "eprint_review_actions", action => "move_reviewed", position => 400, },
+{ place => "eprint_review_actions", action => "move_buffer", position => 600, },
 	];
 	$self->{action_icon} = { move_archive => "action_approve.png",
-				 move_reviewed => "reviewed.png" };
+				 move_reviewed => "reviewed.png",
+				 move_buffer => "revert.png", };
 
 	return $self;
 }

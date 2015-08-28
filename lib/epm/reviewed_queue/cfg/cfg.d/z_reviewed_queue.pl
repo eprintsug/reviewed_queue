@@ -14,8 +14,11 @@ push @{$c->{user_roles}->{admin}}, "review-eprint";
 $c->{roles}->{"review-eprint"} = [
 	"eprint/buffer/move_reviewed:editor",
     "eprint/reviewed/move_archive:editor",
+	"eprint/reviewed/move_buffer:editor",
     "eprint/reviewed/rest/get:editor",
 	"eprint/reviewed/rest/put:editor",
+	"eprint/reviewed/view",
+	"eprint/reviewed/summary",
 ];
 
 $c->{datasets}->{reviewed} = {
