@@ -4,6 +4,10 @@ This package creates a queue for reviewed items where publication of the metadat
 ## Installation
 The package is available through the EPrints Bazaar
 
+## Current version
+
+The current version is 1.0.3 (28th August 2015)
+
 ## Files included
 
 ### /lib/epm/reviewed_queue/cfg/cfg.d/z_reviewed_queue.pl
@@ -37,3 +41,7 @@ Adds reviewed as a status and allows an authorised user to move items to that st
 ### /lib/static/style/images/reviewed.png
 
 Provides an icon in the Review screen to send an item to Reviewed.
+
+### /lib/static/style/images/revert.png
+
+Provides an icon in the Reviewed queue to send an item back to Review.
