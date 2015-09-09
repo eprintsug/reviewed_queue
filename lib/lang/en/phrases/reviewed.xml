@@ -23,5 +23,6 @@
 
     <epp:phrase id="history_fieldopt_action_move_reviewed_to_archive">Moved from Reviewed to Repository</epp:phrase>
 
+	<epp:phrase id="cgi/users/status:set_reviewed">Awaiting Publication</epp:phrase>
 	
 </epp:phrases>
