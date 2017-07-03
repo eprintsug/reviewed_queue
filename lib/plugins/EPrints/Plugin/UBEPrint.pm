@@ -4,6 +4,8 @@ our @ISA = qw/ EPrints::Plugin /;
 
 package EPrints::DataObj::EPrint;
 
+BEGIN { delete $EPrints::DataObj::EPrint::{get_system_field_info}; }
+
 sub get_system_field_info
 {
 	my( $class ) = @_;
