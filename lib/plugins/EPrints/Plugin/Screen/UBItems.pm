@@ -74,6 +74,8 @@ sub render_items
 		$q{"set_show_$f"} = !$filters{$f};
 		$url->query_form( %q );
 		my $link = $session->render_link( $url );
+		# http://servicesjira.eprints.org:8080/browse/RCA-175
+		$link->setAttribute( 'class', "ep_items_filters_$f" );
 		if( $filters{$f} )
 		{
 			$link->appendChild( $session->make_element(
@@ -91,7 +93,7 @@ sub render_items
 		$link->appendChild( $session->make_text( " " ) );
 		$link->appendChild( $session->html_phrase( "eprint_fieldopt_eprint_status_$f" ) );
 		$filter_div->appendChild( $link );
-		$filter_div->appendChild( $session->make_text( ". " ) );
+		#$filter_div->appendChild( $session->make_text( ". " ) );
 	}
 
 	my $columns = $session->current_user->get_value( "items_fields" );
@@ -118,11 +120,11 @@ sub render_items
 			my $td = $session->make_element( "td", class=>"ep_columns_alter" );
 			$final_row->appendChild( $td );
 	
-			my $acts_table = $session->make_element( "table", cellpadding=>0, cellspacing=>0, border=>0, width=>"100%" );
-			my $acts_row = $session->make_element( "tr" );
-			my $acts_td1 = $session->make_element( "td", align=>"left", width=>"14" );
-			my $acts_td2 = $session->make_element( "td", align=>"center", width=>"100%");
-			my $acts_td3 = $session->make_element( "td", align=>"right", width=>"14" );
+			my $acts_table = $session->make_element( "div", class=>"ep_columns_alter_inner" );
+			my $acts_row = $session->make_element( "div" );
+			my $acts_td1 = $session->make_element( "div" );
+			my $acts_td2 = $session->make_element( "div" );
+			my $acts_td3 = $session->make_element( "div" );
 			$acts_table->appendChild( $acts_row );
 			$acts_row->appendChild( $acts_td1 );
 			$acts_row->appendChild( $acts_td2 );
@@ -257,9 +259,9 @@ sub render_items
 	my $colcurr = {};
 	foreach( @$columns ) { $colcurr->{$_} = 1; }
 	my $fieldnames = {};
-        foreach my $field ( $ds->get_fields )
-        {
-                next unless $field->get_property( "show_in_fieldlist" );
+	foreach my $field ( $ds->get_fields )
+	{
+		next unless $field->get_property( "show_in_fieldlist" );
 		next if $colcurr->{$field->get_name};
 		my $name = EPrints::Utils::tree_to_utf8( $field->render_name( $session ) );
 		my $parent = $field->get_property( "parent_name" );
@@ -269,20 +271,26 @@ sub render_items
 			$name = EPrints::Utils::tree_to_utf8( $pfield->render_name( $session )).": $name";
 		}
 		$fieldnames->{$field->get_name} = $name;
-        }
+	}
 
 	my @tags = sort { $fieldnames->{$a} cmp $fieldnames->{$b} } keys %$fieldnames;
 
-	$form_add->appendChild( $session->render_option_list( 
+	my $label = $session->make_element( "label" );
+	$label->appendChild( $session->make_text( $self->phrase( "add_label" ) . " " ) );
+
+	$label->appendChild( $session->render_option_list(
 		name => 'col',
 		height => 1,
 		multiple => 0,
 		'values' => \@tags,
 		labels => $fieldnames ) );
+
+	$form_add->appendChild( $label );
 		
 	$form_add->appendChild( 
 			$session->render_button(
 				class=>"ep_form_action_button",
+				role=>"button",
 				name=>"_action_add_col", 
 				value => $self->phrase( "add" ) ) );
 	$div->appendChild( $form_add );
